@@ -1,0 +1,23 @@
+{
+  "name": "t12-tests-de-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArtemZat/t12-Tests-de-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ArtemZat/t12-Tests-de-Playwright/issues"
+  },
+  "homepage": "https://github.com/ArtemZat/t12-Tests-de-Playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}
