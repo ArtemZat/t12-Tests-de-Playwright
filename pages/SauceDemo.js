@@ -16,9 +16,7 @@ class SauceDemo {
   }
 
   async authentificate(user,password) {
-    await this.page.locator('#user-name').click();
     await this.page.locator('#user-name').fill(user);
-    await this.page.locator('#password').click();
     await this.page.locator('#password').fill(password);
     await this.page.locator('#login-button').click();
     await expect(this.page).toHaveURL('https://www.saucedemo.com/inventory.html');
@@ -87,6 +85,45 @@ class SauceDemo {
     await expect(this.page.locator('body')).toContainText(text);
   }
 
+  async elegirFiltro(text){
+    await this.page.locator('.product_sort_container').selectOption(text); // az,za,lohi,hilo
+  }
+
+  async comprobarPrimerProducto(text){
+    await expect(this.page.locator('[data-test="inventory-item"]').first().locator('.inventory_item_name')).toHaveText(text, { useInnerText: true });
+  }
+
+  async agregarTodosProductos(){
+    await this.page.locator('[data-test="inventory-item"]').nth(0).getByRole('button').click();
+    await this.page.locator('[data-test="inventory-item"]').nth(1).getByRole('button').click();
+    await this.page.locator('[data-test="inventory-item"]').nth(2).getByRole('button').click();
+    await this.page.locator('[data-test="inventory-item"]').nth(3).getByRole('button').click();
+    await this.page.locator('[data-test="inventory-item"]').nth(4).getByRole('button').click();
+    await this.page.locator('[data-test="inventory-item"]').nth(5).getByRole('button').click();
+  }
+
+  async clickBurgerMenu(){
+    await this.page.locator('#react-burger-menu-btn').click();
+  }
+
+  async clickTexto(text){
+    await this.page.getByText(text).click();
+  }
+
+  async tieneURL(url){
+    await expect(this.page).toHaveURL(url);
+  }
+
+  async checkURL(name,url){
+    const link = this.page.locator(name);
+    await expect(link).toHaveAttribute('href', url);
+  }
+
 }
 
 module.exports = { SauceDemo };
+
+// Puede servir para verificar filtro                                                     inventory_item_name 
+// await page.locator('[data-test="inventory-item"]').nth(1).click();
+// await page.locator('[data-test="inventory-item"]').first().click();
+// await this.page.locator('[data-test="inventory-item"]').first().locator()
